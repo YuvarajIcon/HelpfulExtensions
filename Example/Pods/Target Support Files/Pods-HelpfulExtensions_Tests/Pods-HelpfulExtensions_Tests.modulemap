@@ -1,0 +1,6 @@
+framework module Pods_HelpfulExtensions_Tests {
+  umbrella header "Pods-HelpfulExtensions_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
