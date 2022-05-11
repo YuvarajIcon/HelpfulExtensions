@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'HelpfulExtensions_Example' do
+  pod 'HelpfulExtensions', :path => '../'
+
+  target 'HelpfulExtensions_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
