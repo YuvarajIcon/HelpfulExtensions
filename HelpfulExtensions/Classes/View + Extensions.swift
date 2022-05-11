@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+    public func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
@@ -16,7 +16,7 @@ extension UIView {
     }
     
     
-    @IBInspectable var shadowOffset: CGSize{
+    @IBInspectable public var shadowOffset: CGSize{
         get{
             return self.layer.shadowOffset
         }
@@ -25,7 +25,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var shadowColor: UIColor{
+    @IBInspectable public var shadowColor: UIColor{
         get{
             return UIColor(cgColor: self.layer.shadowColor!)
         }
@@ -34,7 +34,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var shadowRadius: CGFloat{
+    @IBInspectable public var shadowRadius: CGFloat{
         get{
             return self.layer.shadowRadius
         }
@@ -43,7 +43,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var shadowOpacity: Float{
+    @IBInspectable public var shadowOpacity: Float{
         get{
             return self.layer.shadowOpacity
         }
@@ -52,7 +52,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var cornerRadius: CGFloat{
+    @IBInspectable public var cornerRadius: CGFloat{
         get{
             return self.layer.cornerRadius
         }
@@ -61,7 +61,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat {
+    @IBInspectable public var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -70,7 +70,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable public var borderColor: UIColor? {
         get {
             if let color = layer.borderColor {
                 return UIColor(cgColor: color)
@@ -88,7 +88,7 @@ extension UIView {
     
     ///Sets the rotation to given degree.
     ///This also includes all the subviews.
-    func setRotationTo(degrees angleInDegrees: CGFloat) {
+    public func setRotationTo(degrees angleInDegrees: CGFloat) {
         let angleInRadians = angleInDegrees / 180.0 * CGFloat.pi
         let rotation = self.transform.rotated(by: angleInRadians)
         self.transform = rotation
@@ -96,25 +96,25 @@ extension UIView {
     
     ///Flips the view horizontally.
     ///This also includes all the subviews.
-    func flipHorizontally() {
+    public func flipHorizontally() {
         let transform = self.transform.scaledBy(x: -1.0, y: 1.0)
         self.transform = transform
     }
     
     ///Resets all transform applied.
-    func resetTransform() {
+    public func resetTransform() {
         self.transform = .identity
     }
     
     ///Flips the view vertically.
     ///This also includes all the subviews.
-    func flipVertically() {
+    public func flipVertically() {
         let transform = self.transform.scaledBy(x: 1.0, y: -1.0)
         self.transform = transform
     }
     
     ///Sets left, right, bottom, top contraints equal to given view.
-    func attachAllAnchors(to parentView: UIView, distance: CGFloat = 0) {
+    public func attachAllAnchors(to parentView: UIView, distance: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.clipsToBounds = true
         NSLayoutConstraint.activate([
@@ -126,7 +126,7 @@ extension UIView {
     }
     
     ///Sets top, bottom constraints equal to given view.
-    func attachVerticalAnchors(to parentView: UIView, distance: CGFloat = 0) {
+    public func attachVerticalAnchors(to parentView: UIView, distance: CGFloat = 0) {
         self.autoresizingMask = [.flexibleHeight]
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
@@ -138,7 +138,7 @@ extension UIView {
     }
     
     ///Sets left, right constraints equal to given view.
-    func attachHorizontalAnchors(to parentView: UIView, distance: CGFloat = 0) {
+    public func attachHorizontalAnchors(to parentView: UIView, distance: CGFloat = 0) {
         self.autoresizingMask = [.flexibleWidth]
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
@@ -150,7 +150,7 @@ extension UIView {
     }
     
     ///Sets left constraint equal to given view.
-    func attachLeftAnchor(to parentView: UIView, distance: CGFloat = 0) {
+    public func attachLeftAnchor(to parentView: UIView, distance: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
         parentView.clipsToBounds = true
@@ -160,7 +160,7 @@ extension UIView {
     }
     
     ///Sets right constraint equal to given view.
-    func attachRightAnchor(to parentView: UIView, distance: CGFloat = 0) {
+    public func attachRightAnchor(to parentView: UIView, distance: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
         parentView.clipsToBounds = true
@@ -170,7 +170,7 @@ extension UIView {
     }
     
     ///Sets top constraint equal to given view.
-    func attachTopAnchor(to parentView: UIView, distance: CGFloat = 0) {
+    public func attachTopAnchor(to parentView: UIView, distance: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
         parentView.clipsToBounds = true
@@ -180,7 +180,7 @@ extension UIView {
     }
     
     ///Sets bottom constraint equal to given view.
-    func attachBottomAnchor(to parentView: UIView, distance: CGFloat = 0) {
+    public func attachBottomAnchor(to parentView: UIView, distance: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
         parentView.clipsToBounds = true
@@ -191,7 +191,7 @@ extension UIView {
     
     ///Sets centerX constraint equal to given view.
     ///Also sets top, bottom greater than equal to given view, if height is not given.
-    func attachCenterXAnchor(to parentView: UIView, withHeight height: CGFloat? = nil) {
+    public func attachCenterXAnchor(to parentView: UIView, withHeight height: CGFloat? = nil) {
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
         parentView.clipsToBounds = true
@@ -212,7 +212,7 @@ extension UIView {
     
     ///Sets centerY constraint equal to given view.
     ///Also sets left, right greater than equal to given view, if width is not given.
-    func attachCentenYAnchor(to parentView: UIView, withWidth width: CGFloat? = nil) {
+    public func attachCentenYAnchor(to parentView: UIView, withWidth width: CGFloat? = nil) {
         self.translatesAutoresizingMaskIntoConstraints = false
         parentView.autoresizesSubviews = true
         parentView.clipsToBounds = true
@@ -232,7 +232,7 @@ extension UIView {
     }
     
     ///Returns subview's frame relative to given superview.
-    func convertedFrame(ofSubView subview: UIView) -> CGRect? {
+    public func convertedFrame(ofSubView subview: UIView) -> CGRect? {
         guard subview.isDescendant(of: self) else {
             return nil
         }
@@ -255,7 +255,7 @@ extension UIView {
     }
     
     ///Inserts a blurview as subview at index 0.
-    func addBlur(with style: UIBlurEffect.Style) {
+    public func addBlur(with style: UIBlurEffect.Style) {
         if UIAccessibility.isReduceTransparencyEnabled == false {
             self.backgroundColor = .clear
             let blurEffect = UIBlurEffect(style: style)
